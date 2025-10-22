@@ -1,0 +1,76 @@
+3.1. Pad Option — Option is 0
+3.2. End Option — Option is 255
+3.3. Subnet Mask — Option is 1
+3.4. Time Offset — Option is 2
+3.5. Router Option — Option is 3
+3.6. Time Server Option — Option is 4
+3.7. Name Server Option — Option is 5
+3.8. Domain Name Server Option — Option is 6
+3.9. Log Server Option — Option is 7
+3.10. Cookie Server Option — Option is 8
+3.11. LPR Server Option — Option is 9
+3.12. Impress Server Option — Option is 10
+3.13. Resource Location Server Option — Option is 11
+3.14. Host Name Option — Option is 12
+3.15. Boot File Size Option — Option is 13
+3.16. Merit Dump File — Option is 14
+3.17. Domain Name — Option is 15
+3.18. Swap Server — Option is 16
+3.19. Root Path — Option is 17
+3.20. Extensions Path — Option is 18
+4.1. IP Forwarding Enable/Disable Option — Option is 19
+4.2. Non-Local Source Routing Enable/Disable Option — Option is 20
+4.3. Policy Filter Option — Option is 21
+4.4. Maximum Datagram Reassembly Size — Option is 22
+4.5. Default IP Time-to-live — Option is 23
+4.6. Path MTU Aging Timeout Option — Option is 24
+4.7. Path MTU Plateau Table Option — Option is 25
+5.1. Interface MTU Option — Option is 26
+5.2. All Subnets are Local Option — Option is 27
+5.3. Broadcast Address Option — Option is 28
+5.4. Perform Mask Discovery Option — Option is 29
+5.5. Mask Supplier Option — Option is 30
+5.6. Perform Router Discovery Option — Option is 31
+5.7. Router Solicitation Address Option — Option is 32
+5.8. Static Route Option — Option is 33
+6.1. Trailer Encapsulation Option — Option is 34
+6.2. ARP Cache Timeout Option — Option is 35
+6.3. Ethernet Encapsulation Option — Option is 36
+7.1. TCP Default TTL Option — Option is 37
+7.2. TCP Keepalive Interval Option — Option is 38
+7.3. TCP Keepalive Garbage Option — Option is 39
+8.1. Network Information Service Domain Option — Option is 40
+8.2. Network Information Servers Option — Option is 41
+8.3. Network Time Protocol Servers Option — Option is 42
+8.4. Vendor Specific Information — Option is 43
+8.5. NetBIOS over TCP/IP Name Server Option — Option is 44
+8.6. NetBIOS over TCP/IP Datagram Distribution Server Option — Option is 45
+8.7. NetBIOS over TCP/IP Node Type Option — Option is 46
+8.8. NetBIOS over TCP/IP Scope Option — Option is 47
+8.9. X Window System Font Server Option — Option is 48
+8.10. X Window System Display Manager Option — Option is 49
+8.11. Network Information Service+ Domain Option — Option is 64
+8.12. Network Information Service+ Servers Option — Option is 65
+8.13. Mobile IP Home Agent option — Option is 68
+8.14. Simple Mail Transport Protocol (SMTP) Server Option — Option is 69
+8.15. Post Office Protocol (POP3) Server Option — Option is 70
+8.16. Network News Transport Protocol (NNTP) Server Option — Option is 71
+8.17. Default World Wide Web (WWW) Server Option — Option is 72
+8.18. Default Finger Server Option — Option is 73
+8.19. Default Internet Relay Chat (IRC) Server Option — Option is 74
+8.20. StreetTalk Server Option — Option is 75
+8.21. StreetTalk Directory Assistance (STDA) Server Option — Option is 76
+9.1. Requested IP Address — Option is 50
+9.2. IP Address Lease Time — Option is 51
+9.3. Option Overload — Option is 52
+9.4. TFTP server name — Option is 66
+9.5. Bootfile name — Option is 67
+9.6. DHCP Message Type — Option is 53
+9.7. Server Identifier — Option is 54
+9.8. Parameter Request List — Option is 55
+9.9. Message — Option is 56
+9.10. Maximum DHCP Message Size — Option is 57
+9.11. Renewal (T1) Time Value — Option is 58
+9.12. Rebinding (T2) Time Value — Option is 59
+9.13. Vendor class identifier — Option is 60
+9.14. Client-identifier — Option is 61
