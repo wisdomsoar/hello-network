@@ -1,1 +1,33 @@
+root@NR7307:~# ip ro show
+default via 116.59.136.123 dev rmnet0
+116.59.136.96/27 dev rmnet0 proto kernel scope link src 116.59.136.122
+192.168.0.0/24 dev br0 proto kernel scope link src 192.168.0.1
+192.168.1.0/24 dev br1 proto kernel scope link src 192.168.1.2
+192.168.2.0/24 dev br2 proto kernel scope link src 192.168.2.1
+192.168.3.0/24 dev br4 proto kernel scope link src 192.168.3.1
+192.168.4.0/24 dev br30 proto kernel scope link src 192.168.4.1
+192.168.11.33 via 192.168.1.174 dev br1 <=======目前WAN起來才有這個 (是bug)
+239.0.0.0/8 dev br0 scope link
+root@NR7307:~#
+
+ ip route show table RT2_rmnet0
+default via 116.59.136.123 dev rmnet0
+116.59.136.96/27 dev rmnet0 scope link
+127.0.0.0/16 dev lo scope link
+192.168.0.0/24 dev br0 scope link
+192.168.1.0/24 dev br1 scope link
+192.168.2.0/24 dev br2 scope link
+192.168.3.0/24 dev br4 scope link
+192.168.4.0/24 dev br30 scope link
+192.168.11.33 via 192.168.1.174 dev br1
+
+ip ro show
+echo "**************************"
+ip route show table RT2_rmnet0
+echo "**************************"
+ip route show table RT2_rmnet1
+echo "**************************"
+
+
+
 VLAN: 位於一或多個邏輯上分開的LAN(使用者管理軟體設定)的一組裝置；讓實際上位於數個不同網段上的裝置進行通訊，就好像是連在相同實體媒介一樣。VLAN是以邏輯，而非實體連線為基礎，因此具有很大的彈性。
