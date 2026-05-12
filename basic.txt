@@ -7,8 +7,10 @@ UDP 67 DHCP Server
 UDP 68 DHCP Client
 tcpdump -i br1 port 67 or port 68 -vvn -l
 
+# 抓出http (port 80)的第一步 (tcp-syn)
+tcpdump -i rmnet0 "tcp port 80 and (tcp[tcpflags] & tcp-syn != 0)" -n
 
-
+ tcpdump -i rmnet0 tcp
 
 
 
@@ -46,3 +48,42 @@ echo "**************************"
 
 
 VLAN: 位於一或多個邏輯上分開的LAN(使用者管理軟體設定)的一組裝置；讓實際上位於數個不同網段上的裝置進行通訊，就好像是連在相同實體媒介一樣。VLAN是以邏輯，而非實體連線為基礎，因此具有很大的彈性。
+
+
+
+root@NR7307:~# iptables -L INPUT_REMOMGMT -n -v
+Chain INPUT_REMOMGMT (1 references)
+ pkts bytes target     prot opt in     out     source               destination
+  140 11537 TRUST_DOMAIN  all  --  *      *       0.0.0.0/0            0.0.0.0/0
+    0     0 Service_HTTP  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80
+    0     0 Service_HTTPS  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:20443
+    0     0 Service_FTP  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:21
+    0     0 Service_TELNET  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:23
+    0     0 Service_SSH  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+    0     0 Service_PING  icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 8
+root@NR7307:~#
+
+
+-L     List the rules in a chain or all chains
+--list 
+
+-n numeric (not resolve)
+
+-v verbose
+
+***************************************************************
+***************************************************************
+
+#清空所有rules
+ iptables -F
+ iptables -t nat -F
+ iptables -t raw -F
+
+-F
+--flush Delete all rules in  chain or all chains
+
+-t 
+--table table to manipulate (default: `filter')
+ 
+ 
+ tcpdump -i rmnet0 "tcp port 80 and (tcp[tcpflags] & tcp-syn != 0)" -n
