@@ -1,3 +1,18 @@
+
+
+/usr/sbin/ez-ipupdate -S "noip" -h "testa1.myftp.org" -u "2pzs6ws:PASSWORD" -i "rmnet0" -t 30
+ez-ipupdate -i rmnet0 -h testa1.myftp.org -S dyndns -u 2pzs6ws:PASSWORD -g /nic/update -s dynupdate.no-ip.com
+
+UDP 67 DHCP Server 
+UDP 68 DHCP Client
+tcpdump -i br1 port 67 or port 68 -vvn -l
+
+
+
+
+
+
+
 root@NR7307:~# ip ro show
 default via 116.59.136.123 dev rmnet0
 116.59.136.96/27 dev rmnet0 proto kernel scope link src 116.59.136.122
@@ -6,7 +21,7 @@ default via 116.59.136.123 dev rmnet0
 192.168.2.0/24 dev br2 proto kernel scope link src 192.168.2.1
 192.168.3.0/24 dev br4 proto kernel scope link src 192.168.3.1
 192.168.4.0/24 dev br30 proto kernel scope link src 192.168.4.1
-192.168.11.33 via 192.168.1.174 dev br1 <=======目前WAN起來才有這個 (是bug)
+192.168.11.33 via 192.168.1.174 dev br1 <=======目前WAN起來才有這個, 而WAN斷線時，會被誤砍 (是bug，應該always存在)
 239.0.0.0/8 dev br0 scope link
 root@NR7307:~#
 
