@@ -1,0 +1,107 @@
+
+
+1. PrPl DUT 需allow WAN private ip: 
+   1.1. miniupnp-prpr的Makefile "ALLOW_RESERVED_ADDR" 要=y.
+   1.2. ubus-cli UPnP.IGDConfig.AllowReservedAddr=1  > cat /var/etc/miniupnpd.conf "pf_allow_reserved_addr=yes".
+   滿足以上兩點, WAN private ip 才會帶到封包裡<NewExternalIPAddress>, upnpc -s 有External IP後, 才能設定portmapping , 不然上述兩項沒開只有 public ip才會有External IP.
+2. 封包裡<NewExternalIPAddress>需有IP:
+   2.1. connected IGD (public WAN IP)可以設定 port mapping成功.
+   2.2. not connected IGD (private WAN IP) 可以透過 -i 來設定 port mapping成功.
+3. 透過LAN PC 執行 upnpc_static.exe -r 11661 tcp 11155 udp
+
+*Data modle:
+#/ubus-cli NAT.?
+> NAT.?
+NAT.
+NAT.InterfaceSettingNumberOfEntries=2
+NAT.PortMappingAllowedOrigins="User,System,UPnp,Controller,Static,UPnP_IWF,Internal"
+NAT.PortMappingNumberOfEntries=2
+NAT.PortTriggerNumberOfEntries=0
+NAT.X_PRPL-COM_MaxPortMappingNumberOfEntries=20
+NAT.X_PRPL-COM_MaxPortTriggerNumberOfEntries=100
+NAT.X_PRPL-COM_MaximumConntrackEntries=65536
+NAT.X_PRPL-COM_NumberOfConntrackEntries=254
+NAT.InterfaceSetting.1.
+NAT.InterfaceSetting.1.Alias="wan"
+NAT.InterfaceSetting.1.Enable=1
+NAT.InterfaceSetting.1.Interface="Device.Logical.Interface.1."
+NAT.InterfaceSetting.1.Status="Enabled"
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterfaceNumberOfEntries=3
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.1.
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.1.Alias="lan"
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.1.Interface="Device.IP.Interface.3."
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.2.
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.2.Alias="guest"
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.2.Interface="Device.IP.Interface.4."
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.3.
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.3.Alias="lcm"
+NAT.InterfaceSetting.1.X_PRPL-COM_NATInterface.3.Interface="Device.IP.Interface.5."
+NAT.InterfaceSetting.2.
+NAT.InterfaceSetting.2.Alias="eth_wan"
+NAT.InterfaceSetting.2.Enable=0
+NAT.InterfaceSetting.2.Interface="Device.Logical.Interface.8."
+NAT.InterfaceSetting.2.Status="Disabled"
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterfaceNumberOfEntries=3
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.1.
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.1.Alias="lan"
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.1.Interface="Device.IP.Interface.3."
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.2.
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.2.Alias="guest"
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.2.Interface="Device.IP.Interface.4."
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.3.
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.3.Alias="lcm"
+NAT.InterfaceSetting.2.X_PRPL-COM_NATInterface.3.Interface="Device.IP.Interface.5."
+NAT.PortMapping.1.
+NAT.PortMapping.1.Alias="cpe-PortMapping-1"
+NAT.PortMapping.1.AllInterfaces=0
+NAT.PortMapping.1.Description="libminiupnpc"
+NAT.PortMapping.1.Enable=1
+NAT.PortMapping.1.ExternalPort=11661
+NAT.PortMapping.1.ExternalPortEndRange=0
+NAT.PortMapping.1.Interface="Device.Logical.Interface.1."
+NAT.PortMapping.1.InternalClient="192.168.1.3
+NAT.PortMapping.1.InternalPort=11661
+NAT.PortMapping.1.LeaseDuration=604800
+NAT.PortMapping.1.Origin="UPnP_IWF"
+NAT.PortMapping.1.Protocol="TCP"
+NAT.PortMapping.1.RemainingLeaseTime=604796
+NAT.PortMapping.1.RemoteHost=""
+NAT.PortMapping.1.ScheduleRef=""
+NAT.PortMapping.1.Status="Enabled"
+NAT.PortMapping.1.X_PRPL-COM_Log=1
+NAT.PortMapping.2.
+NAT.PortMapping.2.Alias="cpe-PortMapping-2"
+NAT.PortMapping.2.AllInterfaces=0
+NAT.PortMapping.2.Description="libminiupnpc"
+NAT.PortMapping.2.Enable=1
+NAT.PortMapping.2.ExternalPort=11155
+NAT.PortMapping.2.ExternalPortEndRange=0
+NAT.PortMapping.2.Interface="Device.Logical.Interface.1."
+NAT.PortMapping.2.InternalClient="192.168.1.3
+NAT.PortMapping.2.InternalPort=11155
+NAT.PortMapping.2.LeaseDuration=604800
+NAT.PortMapping.2.Origin="UPnP_IWF"
+NAT.PortMapping.2.Protocol="UDP"
+NAT.PortMapping.2.RemainingLeaseTime=604796
+NAT.PortMapping.2.RemoteHost=""
+NAT.PortMapping.2.ScheduleRef=""
+NAT.PortMapping.2.Status="Enabled"
+NAT.PortMapping.2.X_PRPL-COM_Log=1
+NAT.X_PRPL-COM_StaticNAT.
+NAT.X_PRPL-COM_StaticNAT.HostNumberOfEntries=0
+
+
+* iptables -t nat -nvL
+
+Chain POSTROUTING_PortForwarding (1 references)
+pkts bytes target     prot opt in     out     source               destination
+    0     0 SNAT       tcp  --  *      *       192.168.1.0/24       192.168.1.3          tcp dpt:11661 to:192.168.12.82:1024-65535
+    0     0 SNAT       udp  --  *      *       192.168.1.0/24       192.168.1.3          udp dpt:11155 to:192.168.12.82:1024-65535
+
+Chain PREROUTING_PortForwarding_3 (1 references)
+pkts bytes target     prot opt in     out     source               destination
+    0     0 DNAT       tcp  --  *      *       0.0.0.0/0            192.168.12.82        tcp dpt:11661 to:192.168.1.3:11661
+    0     0 DNAT       udp  --  *      *       0.0.0.0/0            192.168.12.82        udp dpt:11155 to:192.168.1.3:11155
+
+Chain PREROUTING_PortForwarding_4 (1 references)
+…
