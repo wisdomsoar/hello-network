@@ -87,3 +87,13 @@ root@NR7307:~#
  
  
  tcpdump -i rmnet0 "tcp port 80 and (tcp[tcpflags] & tcp-syn != 0)" -n
+ 
+ 
+ 
+ 
+netstat -tunlp | grep :53
+t: TCP
+u: UDP
+n: Numeric
+l: Listening
+p: Program (PID and Program Name)
